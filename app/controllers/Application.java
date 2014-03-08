@@ -25,7 +25,7 @@ public class Application extends Controller {
             System.out.println("Fuck");
         }
         location.put("lat", Global.currentGame.getCenter().getX());
-        location.put("lon", Global.currentGame.getCenter().getY());
+        location.put("lng", Global.currentGame.getCenter().getY());
         node.put("location", location);
         node.put("timeleft", (Global.currentGame.endTime.getTime() - (new Date()).getTime())/1000);
         return ok(node);
