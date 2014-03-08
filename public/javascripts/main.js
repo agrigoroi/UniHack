@@ -3,14 +3,34 @@ var svp;
 var apiUrl = "http://localhost:9000";
 var game = {};
 var gameLoop = setInterval(gameTick, 1000);
+game.userId = "";
 
 function gameTick() {
   if($ === undefined) return;
   console.log("Tick");
-  game.timeLeft--;
+  if(game.timeLeft > 0) {
+    game.timeLeft--;
+  }
 
-  game.roundIsOver = (game.timeLeft < 0);
-  $("#timeleft").html("Time left: " + game.timeLeft + "s");
+  if(game.timeLeft == 0 && !game.modalIsOpen) {
+      //document.getElementById('OpenTheModal').click();
+  }
+
+  if(game.timeLeft <= 0) {
+    $("#timeleft").html("Waiting for a new round...");
+    $("#submitBtn").addClass("disabled");
+  } else {
+    $("#timeleft").html("Time left: " + game.timeLeft + "s");
+  }
+}
+
+function submitGuess() {
+  console.log(game.guess);
+  var postData = {userId: game.userId, name: game.userName, guess: {lat: game.guess.d, lng: game.guess.e}};;
+  console.log(game.guess);
+  $.post(apiUrl + "/location", postData, function(resp) {
+      $("#timeleft").html("Waiting for the round to end...");
+  });
 }
 
 function getCurrentLocation($) {
@@ -133,6 +153,7 @@ var initialize = function() {
   });
 
   function makeGuess(place) {
+    game.guess = place;
     if(guessMarker !== null) {
       guessMarker.setVisible = false;
       guessMarker.setMap(null);
@@ -145,6 +166,7 @@ var initialize = function() {
       icon: pinImage,
       shadow: pinShadow
     });
+    $("#submitBtn").removeClass("disabled");
   }
 
 //  function updateTime() {
@@ -169,7 +191,7 @@ var initialize = function() {
 //      return y;
 //  }
 
-   document.getElementById('OpenTheModal').click();
+   //document.getElementById('OpenTheModal').click();
 }
 
 window.onload = function() {

@@ -10,6 +10,7 @@ import views.html.*;
 import main.*;
 
 import java.util.Date;
+import java.util.Map;
 
 public class Application extends Controller {
 
@@ -35,12 +36,18 @@ public class Application extends Controller {
     }
 
     public static Result guessLocation() {
-        JsonNode node = request().body().asJson();
-        if(node == null)
-            return badRequest("Expecting Json data");
-        String playerId = node.findPath("player").asText();
-        JsonNode location = node.findPath("location");
-        Global.currentGame.guesses.put(playerId, new LatLng(location.get("lat").asDouble(), location.get("lng").asDouble()));
+//        System.out.println(request().body().asText());
+        Map<String, String[]> data = request().body().asFormUrlEncoded();
+        for(String dataS: data.keySet()) {
+            System.out.print(dataS +": ");
+            for(String s: data.get(dataS))
+                System.out.print(s + ", ");
+        }
+        String playerId = data.get("userId")[0];
+//        JsonNode location = node.findPath("location");
+//        System.out.println(location);
+//        Global.currentGame.guesses.put(playerId, new LatLng(location.get("lat").asDouble(), location.get("lng").asDouble()));
+//        System.out.println(playerId + ": " + location.get("lat").asDouble() + ", " + location.get("lng").asDouble());
         return ok();
     }
 
