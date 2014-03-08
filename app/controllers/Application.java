@@ -17,6 +17,9 @@ public class Application extends Controller {
         return ok(map.render());
     }
 
+    public static Result rules() {
+    	return ok(rules.render());       
+    }
     public static Result getLocation() {
         ObjectNode location = Json.newObject();
         ObjectNode node = Json.newObject();

@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class Player {
 
-    private static HashMap<String, Player> players = new HashMap<>();
+    private static HashMap<String, Player> players = new HashMap<String, Player>();
 
     public String id;
     public int score;
