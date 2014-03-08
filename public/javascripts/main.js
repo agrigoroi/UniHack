@@ -15,12 +15,12 @@ function gameTick() {
 
 function getCurrentLocation($) {
   document.getElementById('OpenTheModal').click();
-  var url = apiUrl + "/assets/getCurrentLocation.json";
+  var url = apiUrl + "/location";
   $.ajax(url, {
     success: function(data) {
       console.log("Location");
       console.log(data);
-      game.timeLeft = data.timeLeft;
+      game.timeLeft = data.timeleft;
 
       svp = new google.maps.StreetViewPanorama(document.getElementById("streetview"), {
         addressControl: false,
