@@ -13,6 +13,10 @@ function gameTick() {
   $("#timeleft").html("Time left: " + game.timeLeft + "s");
 }
 
+function submitGuess() {
+  console.log(game.guess);
+}
+
 function getCurrentLocation($) {
   document.getElementById('OpenTheModal').click();
   var url = apiUrl + "/location";
@@ -134,6 +138,7 @@ var initialize = function() {
   });
 
   function makeGuess(place) {
+    game.guess = place;
     if(guessMarker !== null) {
       guessMarker.setVisible = false;
       guessMarker.setMap(null);
