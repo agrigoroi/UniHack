@@ -26,3 +26,7 @@ body { height: 100%; margin: 0; padding: 0 }
 #results {
     opacity: 0.9;
 }
+
+#controlbar #timeleft {
+	font-size: 15px;
+}

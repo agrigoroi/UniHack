@@ -7,9 +7,13 @@ var gameLoop = setInterval(gameTick, 1000);
 function gameTick() {
   if($ === undefined) return;
   console.log("Tick");
-  game.timeLeft--;
+  if(game.timeLeft > 0) {
+    game.timeLeft--;
+  }
 
-  game.roundIsOver = (game.timeLeft < 0);
+  if(game.timeLeft == 0 && !game.modalIsOpen) {
+      document.getElementById('OpenTheModal').click();
+  }
   $("#timeleft").html("Time left: " + game.timeLeft + "s");
 }
 
