@@ -16,12 +16,14 @@ public class Application extends Controller {
     }
 
     public static Result getLocation() {
+        ObjectNode location = Json.newObject();
         ObjectNode node = Json.newObject();
         if(Global.currentGame == null) {
             System.out.println("Fuck");
         }
-        node.put("lat", Global.currentGame.getCenter().getX());
-        node.put("lon", Global.currentGame.getCenter().getY());
+        location.put("lat", Global.currentGame.getCenter().getX());
+        location.put("lon", Global.currentGame.getCenter().getY());
+        node.put("location", location);
         node.put("timeleft", (Global.currentGame.endTime.getTime() - (new Date()).getTime())/1000);
         return ok(node);
 //        return TODO;
