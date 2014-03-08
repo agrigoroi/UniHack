@@ -1,0 +1,26 @@
+div.gmnoprint svg text {
+    visibility: hidden;
+}
+
+#mycontrol {
+    width: 300px;
+    background: white;
+    top: 0px;
+    opacity: 0.9;
+}
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+#streetview { height: 100% }
+
+
+#smallmap {
+    height: 200px;
+}
+
+#result-map {
+    height: 300px;
+}
+
+#results {
+    opacity: 0.9;
+}

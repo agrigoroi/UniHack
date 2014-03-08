@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real time web chat</title>
+    <script src='@routes.Assets.at("javascripts/main.js")'></script>
+    <script src='@routes.Assets.at("javascripts/modal.js")'></script>
+    <link rel="stylesheet" href='@routes.Assets.at("stylesheets/modal.css")'>
+    <link rel="stylesheet" href='@routes.Assets.at("stylesheets/main.css")'>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="streetview"></div>
+<div id="mycontrol">
+    <div id="timeleft">Time left: unknown</div>
+    <div id="smallmap"></div>
+</div>
+<section id="results" tabindex="-1" role="dialog" ria-labelledby="modal-label1" aria-hidden="true" class="semantic-content">
+    <div class="modal-inner">
+        <header id="modal-label1">Results of Previous Round</header>
+        <div class="modal-content">
+            <div id="result-map"></div>
+            <div id="result-list">testting</div>
+        </div>
+        <footer></footer>
+    </div><a id="CloseTheModal" href="#!" title="Close this modal" data-close="Close" data-dismiss="modal" class="modal-close">×</a><a id="OpenTheModal" href="#results"></a>
+</section>
+</body>
+</html>
