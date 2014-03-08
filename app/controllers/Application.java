@@ -36,18 +36,12 @@ public class Application extends Controller {
     }
 
     public static Result guessLocation() {
-//        System.out.println(request().body().asText());
         Map<String, String[]> data = request().body().asFormUrlEncoded();
-        for(String dataS: data.keySet()) {
-            System.out.print(dataS +": ");
-            for(String s: data.get(dataS))
-                System.out.print(s + ", ");
-        }
         String playerId = data.get("userId")[0];
-//        JsonNode location = node.findPath("location");
-//        System.out.println(location);
-//        Global.currentGame.guesses.put(playerId, new LatLng(location.get("lat").asDouble(), location.get("lng").asDouble()));
-//        System.out.println(playerId + ": " + location.get("lat").asDouble() + ", " + location.get("lng").asDouble());
+        Global.currentGame.guesses.put(playerId, new LatLng(Double.parseDouble(data.get("guess[lat]")[0]),
+                                                            Double.parseDouble(data.get("guess[lng]")[0])));
+        System.out.println(Double.parseDouble(data.get("guess[lat]")[0]) + " " +
+                           Double.parseDouble(data.get("guess[lng]")[0]));
         return ok();
     }
 
