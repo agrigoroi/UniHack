@@ -3,6 +3,7 @@ var svp;
 var apiUrl = "http://localhost:9000";
 var game = {};
 var gameLoop = setInterval(gameTick, 1000);
+game.userId = "";
 
 function gameTick() {
   if($ === undefined) return;
@@ -14,11 +15,19 @@ function gameTick() {
   if(game.timeLeft == 0 && !game.modalIsOpen) {
       document.getElementById('OpenTheModal').click();
   }
-  $("#timeleft").html("Time left: " + game.timeLeft + "s");
+
+  if(game.timeLeft < 0) {
+    $("#timeleft").html("");
+  } else {
+    $("#timeleft").html("Time left: " + game.timeLeft + "s");
+  }
 }
 
 function submitGuess() {
-  console.log(game.guess);
+  var postData = {userId: game.userId, name: game.userName, guess: game.guess};
+  $.post(apiUrl + "/location", postData, function(resp) {
+      $("#timeleft").html("Waiting for the round to end...");
+  });
 }
 
 function getCurrentLocation($) {
