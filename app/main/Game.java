@@ -19,7 +19,7 @@ public class Game {
     public Game(LatLng center) {
         this.center = center;
         this.endTime = new Date((new Date()).getTime() + 60*1000);
-        Promise<WS.Response> result = WS.url("https://vivid-fire-7318.firebaseio.com/test.json").put("\"Start\"");
+        Promise<WS.Response> result = WS.url("https://vivid-fire-7318.firebaseio.com/newRound.json").put("{\"lat\": " + center.getX() + ", \"lng\": " + center.getY() + ", \"timeLeft\": 60}");
 
 
         Timer timer = new Timer();
