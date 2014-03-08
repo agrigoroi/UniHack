@@ -40,7 +40,8 @@ public class Application extends Controller {
         String playerId = data.get("userId")[0];
         Global.currentGame.guesses.put(playerId, new LatLng(Double.parseDouble(data.get("guess[lat]")[0]),
                                                             Double.parseDouble(data.get("guess[lng]")[0])));
-        System.out.println(Double.parseDouble(data.get("guess[lat]")[0]) + " " +
+        System.out.println(playerId + ": " +
+                           Double.parseDouble(data.get("guess[lat]")[0]) + " " +
                            Double.parseDouble(data.get("guess[lng]")[0]));
         return ok();
     }
