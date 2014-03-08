@@ -114,6 +114,25 @@ var initialize = function() {
     }
   }
 
+  function makeid()
+  {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for( var i=0; i < 15; i++ )
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+      return text;
+  }
+
+  var userId = cookies.read("name");
+  if(userId === null) {
+    userId = makeid();
+    cookies.set("name", userId);
+  }
+  game.userId = userId;
+
+
   var pinColor = "00FF00";
   var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
       new google.maps.Size(21, 34),
