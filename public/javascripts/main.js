@@ -13,18 +13,21 @@ function gameTick() {
   }
 
   if(game.timeLeft == 0 && !game.modalIsOpen) {
-      document.getElementById('OpenTheModal').click();
+      //document.getElementById('OpenTheModal').click();
   }
 
-  if(game.timeLeft < 0) {
-    $("#timeleft").html("");
+  if(game.timeLeft <= 0) {
+    $("#timeleft").html("Waiting for a new round...");
+    $("#submitBtn").addClass("disabled");
   } else {
     $("#timeleft").html("Time left: " + game.timeLeft + "s");
   }
 }
 
 function submitGuess() {
-  var postData = {userId: game.userId, name: game.userName, guess: game.guess};
+  console.log(game.guess);
+  var postData = {userId: game.userId, name: game.userName, guess: {lat: game.guess.d, lng: game.guess.e}};;
+  console.log(game.guess);
   $.post(apiUrl + "/location", postData, function(resp) {
       $("#timeleft").html("Waiting for the round to end...");
   });
@@ -163,6 +166,7 @@ var initialize = function() {
       icon: pinImage,
       shadow: pinShadow
     });
+    $("#submitBtn").removeClass("disabled");
   }
 
 //  function updateTime() {
@@ -187,7 +191,7 @@ var initialize = function() {
 //      return y;
 //  }
 
-   document.getElementById('OpenTheModal').click();
+   //document.getElementById('OpenTheModal').click();
 }
 
 window.onload = function() {

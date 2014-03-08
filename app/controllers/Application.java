@@ -43,7 +43,7 @@ public class Application extends Controller {
             for(String s: data.get(dataS))
                 System.out.print(s + ", ");
         }
-        String playerId = data.get("userID")[0];
+        String playerId = data.get("userId")[0];
 //        JsonNode location = node.findPath("location");
 //        System.out.println(location);
 //        Global.currentGame.guesses.put(playerId, new LatLng(location.get("lat").asDouble(), location.get("lng").asDouble()));
