@@ -22,7 +22,7 @@ public class Global extends GlobalSettings {
     @Override
     public void onStart(Application app) {
         Game.locations.add(new LatLng(53.474, -2.248));
-        Game.locations.add(new LatLng(53.474, -2.248));
+        Game.locations.add(new LatLng(53.474, -1.248));
         currentGame = new Game();
     }
     @Override

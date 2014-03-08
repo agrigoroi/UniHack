@@ -5,6 +5,28 @@ var game = {};
 var gameLoop = setInterval(gameTick, 1000);
 game.userId = "";
 
+var firebase = new Firebase("https://vivid-fire-7318.firebaseio.com/newRound");
+firebase.on("value", function(data) {
+  var newRound = data.val();
+  console.log("New Location");
+  console.log(newRound);
+  game.timeLeft = newRound.timeLeft;
+  if(game.timeLeft === undefined) game.timeLeft = 60;
+  svp = new google.maps.StreetViewPanorama(document.getElementById("streetview"), {
+        addressControl: false,
+        linksControl: true,
+        position: new google.maps.LatLng(newRound.lat, newRound.lng),
+        visible: false,
+        pov: {
+        heading: Math.floor(Math.random()*360),
+        pitch: +5
+        }
+      });
+      svp.controls[google.maps.ControlPosition.RIGHT_TOP].push(document.getElementById("mycontrol"));
+
+      svp.setVisible(true);
+});
+
 function gameTick() {
   if($ === undefined) return;
   console.log("Tick");
