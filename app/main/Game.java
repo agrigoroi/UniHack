@@ -11,8 +11,8 @@ public class Game {
 
     public Date endTime;
     public LatLng center;
-    public static ArrayList<LatLng> locations = new ArrayList<>();
-    private HashSet<Player> players = new HashSet<>();
+    public static ArrayList<LatLng> locations = new ArrayList<LatLng>();
+    private HashSet<Player> players = new HashSet<Player>();
 
     public Game(LatLng center) {
         this.center = center;

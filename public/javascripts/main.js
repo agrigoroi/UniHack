@@ -1,5 +1,48 @@
 var svp;
 
+var apiUrl = "http://localhost:9000";
+var game = {};
+var gameLoop = setInterval(gameTick, 1000);
+
+function gameTick() {
+  if($ === undefined) return;
+  console.log("Tick");
+  game.timeLeft--;
+
+  game.roundIsOver = (game.timeLeft < 0);
+  $("#timeleft").html("Time left: " + game.timeLeft + "s");
+}
+
+function getCurrentLocation($) {
+  document.getElementById('OpenTheModal').click();
+  var url = apiUrl + "/location";
+  $.ajax(url, {
+    success: function(data) {
+      console.log("Location");
+      console.log(data);
+      game.timeLeft = data.timeleft;
+
+      svp = new google.maps.StreetViewPanorama(document.getElementById("streetview"), {
+        addressControl: false,
+        linksControl: true,
+        position: new google.maps.LatLng(data.location.lat, data.location.lng),
+        visible: false,
+        pov: {
+        heading: Math.floor(Math.random()*360),
+        pitch: +5
+        }
+      });
+      svp.controls[google.maps.ControlPosition.RIGHT_TOP].push(document.getElementById("mycontrol"));
+
+      svp.setVisible(true);
+    }
+  });
+}
+
+$(document).ready(function() {
+  //getCurrentLocation($);
+});
+
 var initialize = function() {
 
   var cookies = {
@@ -55,7 +98,7 @@ var initialize = function() {
   var guesses = {};
   var timeLeftDiv = document.getElementById("timeleft");
 
-  svp = new google.maps.StreetViewPanorama(document.getElementById("streetview"), {
+  /**svp = new google.maps.StreetViewPanorama(document.getElementById("streetview"), {
     addressControl: false,
     linksControl: true,
     position: new google.maps.LatLng(53.474, -2.248),
@@ -64,10 +107,12 @@ var initialize = function() {
       heading: Math.floor(Math.random()*360),
       pitch: +5
     }
-  });
-  svp.controls[google.maps.ControlPosition.RIGHT_TOP].push(document.getElementById("mycontrol"));
+    svp.controls[google.maps.ControlPosition.RIGHT_TOP].push(document.getElementById("mycontrol"));
 
   svp.setVisible(true);
+  });*/
+  getCurrentLocation($);
+  
 
   var map = new google.maps.Map(document.getElementById("smallmap"), {
     zoom: 0,
