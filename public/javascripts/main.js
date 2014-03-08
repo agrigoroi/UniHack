@@ -31,7 +31,6 @@ function submitGuess() {
 }
 
 function getCurrentLocation($) {
-  document.getElementById('OpenTheModal').click();
   var url = apiUrl + "/location";
   $.ajax(url, {
     success: function(data) {
