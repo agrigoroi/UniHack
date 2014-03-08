@@ -22,13 +22,23 @@ public class Global extends GlobalSettings {
         Game.locations.add(new LatLng(53.474, -2.248));
         currentGame = new Game();
         Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
+        TimerTask endGame = new TimerTask() {
+            public void run()
+            {
+                for(String player: currentGame.guesses.keySet()) {
+                    LatLng guess = currentGame.guesses.get(player);
+                    System.out.println(player + ": " + guess.getX() + ", " + guess.getY());
+                }
+            }
+        };
+        timer.schedule(endGame, currentGame.endTime.getTime() - (new Date()).getTime());
+        TimerTask newGame = new TimerTask() {
             public void run()
             {
                 currentGame = new Game();
             }
         };
-        timer.schedule(task, currentGame.endTime.getTime() - (new Date()).getTime() + 10*1000);
+        timer.schedule(newGame, currentGame.endTime.getTime() - (new Date()).getTime() + 10*1000);
     }
     @Override
     public void onStop(Application app) {

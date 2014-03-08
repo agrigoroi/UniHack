@@ -12,7 +12,7 @@ public class Game {
     public Date endTime;
     public LatLng center;
     public static ArrayList<LatLng> locations = new ArrayList<>();
-    private HashSet<Player> players = new HashSet<>();
+    public HashMap<String, LatLng> guesses = new HashMap<>();
 
     public Game(LatLng center) {
         this.center = center;
