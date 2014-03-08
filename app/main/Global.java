@@ -18,6 +18,7 @@ public class Global extends GlobalSettings {
 
     @Override
     public void onStart(Application app) {
+        Firebase fb =  new Firebase('https://incandescent-fire-6038.firebaseio.com/');
         Game.locations.add(new LatLng(53.474, -2.248));
         Game.locations.add(new LatLng(53.474, -2.248));
         currentGame = new Game();
