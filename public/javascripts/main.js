@@ -175,7 +175,7 @@ var initialize = function() {
 //      return y;
 //  }
 
-  // document.getElementById('OpenTheModal').click();
+   document.getElementById('OpenTheModal').click();
 }
 
 window.onload = function() {

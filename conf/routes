@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index()
+GET     /rules               		controllers.Application.rules()
 GET     /location                   controllers.Application.getLocation()
 POST    /location/:id               controllers.Application.guessLocation(id: String)
 
